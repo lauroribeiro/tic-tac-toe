@@ -38,6 +38,7 @@ respectivamente."
       puts "#{@player2.name} choose your position!"
       get_position(@player2)
     end
+    change_turn
     show_display
   end
 
@@ -56,6 +57,10 @@ respectivamente."
 
     puts 'Invalid position'
     false
+  end
+
+  def change_turn
+    @@player1_turn = !@@player1_turn
   end
 end
 
