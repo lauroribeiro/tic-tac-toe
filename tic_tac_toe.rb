@@ -1,7 +1,8 @@
 class Game
+  WINNING_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   @@player1_score = 0
   @@player2_score = 0
-  @@positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @@positions = [0, 1, 2, 3, 4, 5, 6, 7, 8]
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -14,16 +15,9 @@ respectivamente."
   end
 
   def check_win
-    @@positions.each_index do |i|
-      if i + 1 % 3 != 1
-        return true if @@positions.at(i) == @@positions.at(i+1) && @@positions.at(i+1) == @@positions.at(i+2)
-      elsif i + 1 < 4
-        return true if @@positions.at(i) == @@positions.at(i+3) && @@positions.at(i+3) == @@positions.at(i+6)
-      end
+    WIN_COMBINATIONS.each do |comb|
+      return true if @@positions[comb[0]] == @@positions[comb[1]] && @@positions[comb[1]] == @@positions[comb[2]]
     end
-    return true if @@positions.at(0) == @@positions.at(4) && @@positions.at(4) == @@positions.at(8)
-    return true if @@positions.at(2) == @@positions.at(4) && @@positions.at(4) == @@positions.at(6)
-
     false
   end
 
@@ -34,6 +28,8 @@ respectivamente."
     puts '-----------'
     puts " #{@@positions[6]} | #{@@positions[7]} | #{@@positions[8]} "
   end
+
+  def ask_position; end
 end
 
 class Player
