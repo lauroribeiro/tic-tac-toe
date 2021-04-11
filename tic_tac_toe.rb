@@ -92,9 +92,9 @@ class Player
 end
 
 puts "Player 1, choose your nickname:\n"
-player1 = gets
+player1 = gets.chomp
 puts "Player 2, choose your nickname:\n"
-player2 = gets
+player2 = gets.chomp
 game = Game.new(Player.new(player1), Player.new(player2))
 game.greetings
 game.play
