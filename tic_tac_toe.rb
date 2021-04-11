@@ -15,9 +15,14 @@ Vocês serão representados por #{@player1.symbol} e #{@player2.symbol},
 respectivamente."
   end
 
+  def play
+    
+  end
+
   def check_win
     WIN_COMBINATIONS.each do |comb|
-      return true if @@positions[comb[0]] == @@positions[comb[1]] && @@positions[comb[1]] == @@positions[comb[2]]
+      if @@positions[comb[0]] == @@positions[comb[1]] && @@positions[comb[1]] == @@positions[comb[2]]
+        return @@positions[comb[0]]
     end
     false
   end
