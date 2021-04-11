@@ -11,9 +11,9 @@ class Game
   end
 
   def greetings
-    "Sejam bem-vindos, #{@player1.name} e #{@player2.name}.
-Vocês serão representados por #{@player1.symbol} e #{@player2.symbol},
-respectivamente."
+    "Welcome, #{@player1.name} and #{@player2.name}.
+You will be representend by #{@player1.symbol} and #{@player2.symbol},
+respectively."
   end
 
   def play
@@ -39,19 +39,19 @@ respectivamente."
   end
 
   def show_display
-    puts " #{@positions[0]} | #{@positions[1]} | #{@positions[2]} "
+    puts "\n #{@positions[0]} | #{@positions[1]} | #{@positions[2]} "
     puts '-----------'
     puts " #{@positions[3]} | #{@positions[4]} | #{@positions[5]} "
     puts '-----------'
-    puts " #{@positions[6]} | #{@positions[7]} | #{@positions[8]} "
+    puts " #{@positions[6]} | #{@positions[7]} | #{@positions[8]} \n\n"
   end
 
   def ask_position
     if @player1_turn
-      puts "#{@player1.name} choose your position!"
+      puts "#{@player1.name}, choose your position!\n "
       return unless get_position(@player1)
     else
-      puts "#{@player2.name} choose your position!"
+      puts "#{@player2.name}, choose your position!\n "
       return unless get_position(@player2)
     end
     change_turn
@@ -91,5 +91,10 @@ class Player
   end
 end
 
-game = Game.new(Player.new('lauro'), Player.new('duda'))
+puts "Player 1, choose your nickname:\n"
+player1 = gets
+puts "Player 2, choose your nickname:\n"
+player2 = gets
+game = Game.new(Player.new(player1), Player.new(player2))
+game.greetings
 game.play
