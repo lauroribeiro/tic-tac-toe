@@ -1,3 +1,5 @@
+require 'pry'
+
 class Game
   WINNING_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   @@player1_score = 0
@@ -16,22 +18,19 @@ respectivamente."
   end
 
   def play
-    while !check_win
-      ask_position
-      change_turn
-      show_display
-    end
+    show_display
+    ask_position until check_win
     if check_win == @player1.symbol
       @@player1_score += 1
-      puts "#{player1.name} WINS!!"
+      puts "#{@player1.name} WINS!!"
     else
       @@player2_score += 1
-      puts "#{player2.name} WINS!!"
+      puts "#{@player2.name} WINS!!"
     end
   end
 
   def check_win
-    WIN_COMBINATIONS.each do |comb|
+    WINNING_COMBINATIONS.each do |comb|
       if @@positions[comb[0]] == @@positions[comb[1]] && @@positions[comb[1]] == @@positions[comb[2]]
         return @@positions[comb[0]]
       end
@@ -50,25 +49,28 @@ respectivamente."
   def ask_position
     if @@player1_turn
       puts "#{@player1.name} choose your position!"
-      get_position(@player1)
+      return unless get_position(@player1)
     else
       puts "#{@player2.name} choose your position!"
-      get_position(@player2)
+      return unless get_position(@player2)
     end
+    change_turn
+    show_display
   end
 
   def get_position(player)
-    pos = gets
-    ask_position unless valid_position? pos
+    pos = gets.to_i
+    return false unless valid_position? pos
+
     set_position(pos, player.symbol)
   end
 
   def set_position(pos, symbol)
-    @@position[pos] = symbol
+    @@positions[pos] = symbol
   end
 
   def valid_position?(pos)
-    return true if @@position[pos] == pos
+    return true if @@positions[pos] == pos
 
     puts 'Invalid position'
     false
@@ -81,6 +83,7 @@ end
 
 class Player
   attr_reader :name, :symbol
+  
   def initialize(name)
     @name = name
     @symbol = name[0].capitalize
