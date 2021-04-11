@@ -11,7 +11,7 @@ class Game
   end
 
   def greetings
-    "Welcome, #{@player1.name} and #{@player2.name}.
+    puts "Welcome, #{@player1.name} and #{@player2.name}.
 You will be representend by #{@player1.symbol} and #{@player2.symbol},
 respectively."
   end
