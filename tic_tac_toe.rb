@@ -2,6 +2,7 @@ class Game
   WINNING_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   @@player1_score = 0
   @@player2_score = 0
+  @@player1_turn = true
   @@positions = [0, 1, 2, 3, 4, 5, 6, 7, 8]
   def initialize(player1, player2)
     @player1 = player1
@@ -29,7 +30,22 @@ respectivamente."
     puts " #{@@positions[6]} | #{@@positions[7]} | #{@@positions[8]} "
   end
 
-  def ask_position; end
+  def ask_position
+    if @@player1_turn
+      puts "#{@player1.name} choose your position!"
+      # get_position(@player1)
+    else
+      puts "#{@player2.name} choose your position!"
+      # get_position(@player2)
+    end
+  end
+
+  def get_position(player)
+    
+  end
+
+  def is_position_valid?(pos); end
+
 end
 
 class Player
