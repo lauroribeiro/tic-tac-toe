@@ -33,19 +33,30 @@ respectivamente."
   def ask_position
     if @@player1_turn
       puts "#{@player1.name} choose your position!"
-      # get_position(@player1)
+      get_position(@player1)
     else
       puts "#{@player2.name} choose your position!"
-      # get_position(@player2)
+      get_position(@player2)
     end
+    show_display
   end
 
   def get_position(player)
-    
+    pos = gets
+    ask_position unless valid_position? pos
+    set_position(pos, player.symbol)
   end
 
-  def is_position_valid?(pos); end
+  def set_position(pos, symbol)
+    @@position[pos] = symbol
+  end
 
+  def valid_position?(pos)
+    return true if @@position[pos] == pos
+
+    puts 'Invalid position'
+    false
+  end
 end
 
 class Player
