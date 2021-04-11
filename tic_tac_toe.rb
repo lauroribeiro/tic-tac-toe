@@ -34,6 +34,7 @@ respectivamente."
     WIN_COMBINATIONS.each do |comb|
       if @@positions[comb[0]] == @@positions[comb[1]] && @@positions[comb[1]] == @@positions[comb[2]]
         return @@positions[comb[0]]
+      end
     end
     false
   end
@@ -80,7 +81,6 @@ end
 
 class Player
   attr_reader :name, :symbol
-
   def initialize(name)
     @name = name
     @symbol = name[0].capitalize
@@ -88,5 +88,4 @@ class Player
 end
 
 game = Game.new(Player.new('lauro'), Player.new('duda'))
-game.show_display
-puts game.check_win
+game.play
