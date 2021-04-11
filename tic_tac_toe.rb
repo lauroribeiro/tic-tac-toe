@@ -16,7 +16,18 @@ respectivamente."
   end
 
   def play
-    
+    while !check_win
+      ask_position
+      change_turn
+      show_display
+    end
+    if check_win == @player1.symbol
+      @@player1_score += 1
+      puts "#{player1.name} WINS!!"
+    else
+      @@player2_score += 1
+      puts "#{player2.name} WINS!!"
+    end
   end
 
   def check_win
@@ -43,8 +54,6 @@ respectivamente."
       puts "#{@player2.name} choose your position!"
       get_position(@player2)
     end
-    change_turn
-    show_display
   end
 
   def get_position(player)
