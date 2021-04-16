@@ -10,12 +10,6 @@ class Game
     @current_turn = 0
   end
 
-  def greetings
-    puts "Welcome, #{@player1.name} and #{@player2.name}.
-You will be representend by #{@player1.symbol} and #{@player2.symbol},
-respectively."
-  end
-
   def play
     show_display
     ask_position until check_win || @current_turn == 9
@@ -96,5 +90,4 @@ player1 = gets.chomp
 puts "Player 2, choose your nickname:\n"
 player2 = gets.chomp
 game = Game.new(Player.new(player1), Player.new(player2))
-game.greetings
 game.play
