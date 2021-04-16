@@ -33,11 +33,16 @@ class Game
   end
 
   def show_display
+    clear_display
     puts "\n #{@positions[0]} | #{@positions[1]} | #{@positions[2]} "
     puts '-----------'
     puts " #{@positions[3]} | #{@positions[4]} | #{@positions[5]} "
     puts '-----------'
     puts " #{@positions[6]} | #{@positions[7]} | #{@positions[8]} \n\n"
+  end
+
+  def clear_display
+    puts `clear`
   end
 
   def ask_position
