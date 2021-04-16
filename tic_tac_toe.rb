@@ -23,6 +23,8 @@ class Game
     puts 'DRAW!' unless check_win
   end
 
+  private
+
   def check_win
     WINNING_COMBINATIONS.each do |comb|
       if @positions[comb[0]] == @positions[comb[1]] && @positions[comb[1]] == @positions[comb[2]]
