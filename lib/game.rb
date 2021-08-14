@@ -82,19 +82,3 @@ class Game
     @current_turn += 1
   end
 end
-
-class Player
-  attr_reader :name, :symbol
-
-  def initialize(name)
-    @name = name.capitalize
-    @symbol = name[0].capitalize
-  end
-end
-
-puts "Player 1, choose your nickname:\n"
-player1 = gets.chomp
-puts "Player 2, choose your nickname:\n"
-player2 = gets.chomp
-game = Game.new(Player.new(player1), Player.new(player2))
-game.play
