@@ -12,26 +12,31 @@ class TicTacToe
 
   def play
     show_display
-    ask_position until check_win || @current_turn == 9
-    if check_win == @player1.symbol
-      @player1_score += 1
-      puts "#{@player1.name} WINS!!"
-    elsif check_win == @player2.symbol
-      @player2_score += 1
-      puts "#{@player2.name} WINS!!"
-    end
-    puts 'DRAW!' unless check_win
+    ask_position until game_over || @current_turn == 9
+    display_winner
   end
-
-  private
-
-  def check_win
+  
+  def game_over
     WINNING_COMBINATIONS.each do |comb|
       if @positions[comb[0]] == @positions[comb[1]] && @positions[comb[1]] == @positions[comb[2]]
         return @positions[comb[0]]
       end
     end
     false
+  end
+  
+  private
+
+
+  def display_winner
+    if game_over == @player1.symbol
+      @player1_score += 1
+      puts "#{@player1.name} WINS!!"
+    elsif game_over == @player2.symbol
+      @player2_score += 1
+      puts "#{@player2.name} WINS!!"
+    end
+    puts 'DRAW!' unless game_over
   end
 
   def show_display
